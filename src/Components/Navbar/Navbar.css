@@ -44,6 +44,10 @@ a{
   font-weight: 500;
 }
 
+/* .navbar .nav-menu a{
+  color: #626262;
+} */
+
 .navbar .nav-menu li{
   display: flex;
   flex-direction: column;
