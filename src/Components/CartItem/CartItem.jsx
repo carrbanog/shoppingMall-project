@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import "./CartItem.css";
 import { ShopContext } from "../../Context/ShopContext";
 import { CiCircleRemove } from "react-icons/ci";
+import useProducts from "../Assets/all_product2";
 
 const CartItem = () => {
   const {getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
+  const {fakeProducts} = useProducts();
   // console.log(getTotalCartAmount)
   return (
     <div className="cartitems">
@@ -17,18 +19,18 @@ const CartItem = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product.map((e) => {
+      {fakeProducts.map((e) => {
         if (cartItems[e.id] > 0) {
           return (
             <div>
               <div className="cartitems-format cartitems-format-main">
                 <img src={e.image} className="carticon-product-icon" />
-                <p>{e.name}</p>
-                <p>${e.new_price}</p>
+                <p>{e.title}</p>
+                <p>${e.price}</p>
                 <button className="cartitems-quantity">
                   {cartItems[e.id]}
                 </button>
-                <p>${e.new_price * cartItems[e.id]}</p>
+                <p>${e.price * cartItems[e.id]}</p>
                 <CiCircleRemove
                   className="cartitems-remove-icon"
                   onClick={() => {
@@ -52,13 +54,14 @@ const CartItem = () => {
             </div>
             <hr />
             <div className="cartitems-total-item">
-              <p>Shipping Fee</p>
-              <p>Free</p>
+              {/* <p>Shipping Fee</p>
+              <p>Free</p> */}
+              {getTotalCartAmount() > 50 ? <p>Shipping Free</p> : <p>$5</p> }
             </div>
             <hr />
             <div className="cartitems-total-item">
               <h3>Total</h3>
-              <h3>${getTotalCartAmount()}</h3>
+              <h3>${getTotalCartAmount() > 0 && getTotalCartAmount() < 50 ? getTotalCartAmount() + 5 : getTotalCartAmount()}</h3>
             </div>
           </div>
           <button>PROCEED TO CHECKOUT</button>

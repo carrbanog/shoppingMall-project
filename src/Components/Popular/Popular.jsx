@@ -2,22 +2,26 @@ import React from "react";
 import "./Popular.css";
 import data_product from "../Assets/data";
 import Item from "../Item/Item";
+import useProducts from "../Assets/all_product2";
+
 
 const Popular = () => {
+  const {fakeProducts, loading} = useProducts();
+  console.log(fakeProducts)
+  
   return (
     <div className="popular">
       <h1>POPULAR IN T-SHIRT</h1>
       <hr />
       <div className="popular-item">
-        {data_product.map((item, i) => {
+        {fakeProducts.slice(0,4).map((item, i) => {
           return (
             <Item 
               key={i} 
               id={item.id} 
-              name={item.name} 
+              name={item.title} 
               image={item.image}
-              new_price={item.new_price}
-              old_price={item.old_price} 
+              new_price={item.price}
             />
           );
         })}

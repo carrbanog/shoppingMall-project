@@ -43,9 +43,13 @@
 }
 .shopcategory-products{
   margin: 20px 170px;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 */
+  gap: 20px; /* 카드 간격 */
+  padding: 20px;
   /* width: 100%; */
 }
 .shopcategory-products .item{
@@ -58,7 +62,8 @@
 }
 
 .shopcategory-products .item img{
-  width: 80%;
+  width: 220px;
+  height: 290px;
 }
 .shopcategory-loadmore{
   display: flex;

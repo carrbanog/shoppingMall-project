@@ -5,18 +5,22 @@ import Breadcrum from '../Components/Breadcrums/Breadcrum';
 import ProductDisplay from '../Components/ProductDisplay/ProductDisplay';
 import DescriptionBox from '../Components/DescriptionBox/DescriptionBox';
 import RelatedProducts from '../Components/RelatedProducts/RelatedProducts';
+import useProducts from "../Components/Assets/all_product2";
+
 
 const Product = () => {
+  const {fakeProducts} = useProducts();
   const {all_product} = useContext(ShopContext);
   const {productId} = useParams();
-  // console.log(productId)
-  const product = all_product.find((e) => e.id === Number(productId))
+  // const fProduct = fakeProducts.find((e) => e.id === Number(productId))
+  const product = fakeProducts.find((e) => e.id === Number(productId))
   // console.log(productId, product)
+  // console.log(Product)
   return (
     <div>
       <Breadcrum product={product} />
       <ProductDisplay product={product} />
-      <DescriptionBox />
+      <DescriptionBox product={product} />
       <RelatedProducts />
     </div>
   )

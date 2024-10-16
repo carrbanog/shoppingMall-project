@@ -5,7 +5,11 @@ import { ShopContext } from "../../Context/ShopContext";
 
 const ProductDisplay = (props) => {
   const { product } = props;
-  const {addToCart} = useContext(ShopContext);
+  const { addToCart } = useContext(ShopContext);
+  // console.log(product)
+  if (!product) {
+    return null;
+  }
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
@@ -20,7 +24,7 @@ const ProductDisplay = (props) => {
         </div>
       </div>
       <div className="productdisplay-right">
-        <h1>{product.name}</h1>
+        <h1>{product.title}</h1>
         <div className="productdisplay-right-star">
           {/* <FaStar />
           <FaStar />
@@ -30,15 +34,13 @@ const ProductDisplay = (props) => {
           <p>(122)</p> */}
         </div>
         <div className="productdisplay-right-prices">
-          <div className="productdisplay-right-price-old">
-            ${product.old_price}
-          </div>
           <div className="productdisplay-right-price-new">
-            ${product.new_price}
+            ${product.price}
           </div>
         </div>
         <div className="productdisplay-right-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, ad itaque? Eveniet aspernatur ab in?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, ad
+          itaque? Eveniet aspernatur ab in?
         </div>
         <div className="productdisplay-right-size">
           <h1>Select Size</h1>
@@ -50,7 +52,13 @@ const ProductDisplay = (props) => {
             <div>XXL</div>
           </div>
         </div>
-        <button onClick={() => {addToCart(product.id)}}>ADD TO CART</button>
+        <button
+          onClick={() => {
+            addToCart(product.id);
+          }}
+        >
+          ADD TO CART
+        </button>
         <p className="productdisplay-right-category">
           <span>Category: </span> {product.category}
         </p>
