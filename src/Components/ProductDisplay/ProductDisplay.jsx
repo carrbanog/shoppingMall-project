@@ -6,6 +6,10 @@ import { ShopContext } from "../../Context/ShopContext";
 const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
+  const handleClickProduct = (product) => {
+    addToCart(product)
+    console.log(product)
+  }
   // console.log(product)
   if (!product) {
     return null;
@@ -53,9 +57,7 @@ const ProductDisplay = (props) => {
           </div>
         </div>
         <button
-          onClick={() => {
-            addToCart(product.id);
-          }}
+          onClick={() => handleClickProduct(product)}
         >
           ADD TO CART
         </button>

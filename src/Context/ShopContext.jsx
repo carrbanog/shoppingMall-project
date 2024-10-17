@@ -15,21 +15,29 @@ const getDefaultCart = (fakeProducts) => {
   return cart;
 };
 
+  
+
 const ShopContextProvider = (props) => {
   const { fakeProducts, loading } = useProducts();
   const [cartItems, setCartItems] = useState(getDefaultCart(fakeProducts));
+  const [showItem, setShowItem] = useState([]);
 
-  const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+  const addToCart = (product) => {
+    setCartItems((prev) => ({ ...prev, [product.id]: prev[product.id] + 1 }));
+    // const productWithId = {...product, id: nextId}
+    // setShowItem((prev) => [...prev, product])
     console.log(cartItems);
+    console.log(showItem);
   };
 
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setShowItem((prev) => prev.filter((item) => item.id !== itemId))
     console.log(cartItems);
+    console.log(showItem);
   };
 
-  const getTotalCartAmount = () => {
+  const getTotalCartAmount = (productId) => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {

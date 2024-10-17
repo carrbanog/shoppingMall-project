@@ -10,6 +10,7 @@ import Footer from "./Components/Footer/Footer";
 import banner1 from "../src/Components/Assets/b16.jpg";
 import banner2 from "../src/Components/Assets/b17.jpg";
 import banner3 from "../src/Components/Assets/b18.jpg";
+import Admin from "./Pages/Admin";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -3,11 +3,26 @@ import "./CartItem.css";
 import { ShopContext } from "../../Context/ShopContext";
 import { CiCircleRemove } from "react-icons/ci";
 import useProducts from "../Assets/all_product2";
+import { useCart } from "../../Context/GraphContext";
+
 
 const CartItem = () => {
-  const {getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
-  const {fakeProducts} = useProducts();
+  const { getTotalCartAmount, all_product, cartItems, removeFromCart, setCartItems } =
+    useContext(ShopContext);
+  const { fakeProducts } = useProducts();
+  const { addToCartItems } = useCart();
   // console.log(getTotalCartAmount)
+  const handlePay = (cartItems) => {
+    const cartItemsArray = Object.keys(cartItems)
+      .map((key) => ({
+        id: parseInt(key), // 키를 숫자로 변환하여 id로 사용
+        quantity: cartItems[key], // 값으로 수량 설정
+      }))
+      .filter((item) => item.quantity > 0); // 수량이 0인 아이템은 제외
+    addToCartItems(cartItemsArray);
+    // setCartItems((prev) => ({})); 
+    console.log(cartItemsArray); // 배열로 변환된 결과 출력
+  };
   return (
     <div className="cartitems">
       <div className="cartitems-format-main">
@@ -56,15 +71,22 @@ const CartItem = () => {
             <div className="cartitems-total-item">
               {/* <p>Shipping Fee</p>
               <p>Free</p> */}
-              {getTotalCartAmount() > 50 ? <p>Shipping Free</p> : <p>$5</p> }
+              {getTotalCartAmount() > 50 ? <p>Shipping Free</p> : <p>$5</p>}
             </div>
             <hr />
             <div className="cartitems-total-item">
               <h3>Total</h3>
-              <h3>${getTotalCartAmount() > 0 && getTotalCartAmount() < 50 ? getTotalCartAmount() + 5 : getTotalCartAmount()}</h3>
+              <h3>
+                $
+                {getTotalCartAmount() > 0 && getTotalCartAmount() < 50
+                  ? getTotalCartAmount() + 5
+                  : getTotalCartAmount()}
+              </h3>
             </div>
           </div>
-          <button>PROCEED TO CHECKOUT</button>
+          <button onClick={() => handlePay(cartItems)}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className="cartitems-promocode">
           <p>If you have a prome code, Enter it here</p>

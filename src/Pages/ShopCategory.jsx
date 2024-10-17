@@ -19,8 +19,8 @@ const ShopCategory = (props) => {
     );
     setFillteredProducts(filtered);
   }, [props.category, fakeProducts]);
-  console.log(fakeProducts)
-  console.log(props)
+  // console.log(fakeProducts)
+  // console.log(props)
   return (
     <div className="shop-category">
       {/* <img className="shopcategory-banner" src={props.banner} alt="" /> */}
@@ -46,6 +46,7 @@ const ShopCategory = (props) => {
                 name={item.title}
                 image={item.image}
                 new_price={item.price}
+                category={item.category}
               />
             );
           } else {

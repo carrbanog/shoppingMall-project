@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="userProfile">
           {
             isAuthenticated&&
-            <>{user.email}</>
+            <Link to="/admin">{user.email}</Link>
           }
         </div>
         <Link to="/cart">
