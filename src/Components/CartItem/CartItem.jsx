@@ -5,10 +5,14 @@ import { CiCircleRemove } from "react-icons/ci";
 import useProducts from "../Assets/all_product2";
 import { useCart } from "../../Context/GraphContext";
 
-
 const CartItem = () => {
-  const { getTotalCartAmount, all_product, cartItems, removeFromCart, setCartItems } =
-    useContext(ShopContext);
+  const {
+    getTotalCartAmount,
+    all_product,
+    cartItems,
+    removeFromCart,
+    setCartItems,
+  } = useContext(ShopContext);
   const { fakeProducts } = useProducts();
   const { addToCartItems } = useCart();
   // console.log(getTotalCartAmount)
@@ -20,7 +24,7 @@ const CartItem = () => {
       }))
       .filter((item) => item.quantity > 0); // 수량이 0인 아이템은 제외
     addToCartItems(cartItemsArray);
-    // setCartItems((prev) => ({})); 
+    // setCartItems((prev) => ({}));
     console.log(cartItemsArray); // 배열로 변환된 결과 출력
   };
   return (
@@ -71,7 +75,14 @@ const CartItem = () => {
             <div className="cartitems-total-item">
               {/* <p>Shipping Fee</p>
               <p>Free</p> */}
-              {getTotalCartAmount() > 50 ? <p>Shipping Free</p> : <p>$5</p>}
+              {getTotalCartAmount() > 50 ? (
+                <p>Shipping Free</p>
+              ) : (
+                <>
+                  <p>delivery fee</p>
+                  <p>$5</p>
+                </>
+              )}
             </div>
             <hr />
             <div className="cartitems-total-item">

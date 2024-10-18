@@ -29,7 +29,7 @@ const RelatedProducts = () => {
   console.log(mostFrequentCategory);
   return (
     <div className="relatedproducts">
-      <h1>Related Products</h1>
+      <h1>Recommended Products</h1>
       <hr />
       <div className="relatedproducts-item">
         {/* {fakeProducts.filter((item, i) => {

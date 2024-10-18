@@ -45,12 +45,19 @@
   margin-right: 200px;
   gap: 40px;
 }
+
 .cartitems-total-item{
   display: flex;
   justify-content: space-between;
   padding: 15px 0px;
 }
-.cartitems-total-item:nth-child(3){
+.cartitems-total-item:nth-of-type(2) .noDelivery{
+  /* display: flex;
+  justify-content: space-between; */
+  display: flex;
+  justify-content: center;
+}
+.cartitems-total-item .delivery{
   display: flex;
   justify-content: flex-end;
   padding: 15px 0px;

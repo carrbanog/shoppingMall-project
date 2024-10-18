@@ -38,6 +38,10 @@
   border: 1px solid #888;
 }
 
+.shopcategory-sort span{
+  margin-left: 5px;
+}
+
 .shopcategory-indexSort p span{
   font-weight: 600;
 }
